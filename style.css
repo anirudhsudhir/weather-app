@@ -1,0 +1,7 @@
+.weather-data {
+  display: flex;
+}
+
+.data-column {
+  flex: auto;
+}
