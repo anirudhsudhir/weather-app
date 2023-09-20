@@ -31,7 +31,6 @@ async function searchCity() {
     fillWeatherData()
 }
 
-const dataDump = document.querySelector('.weatherdata-day')
 let apiKey = "66cab58a00be0e1b64b6ac3f24d0eb2b"
 let cityLatitude, cityLongitude, weatherData;
 const searchBox = document.getElementById('search-box')
