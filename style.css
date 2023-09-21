@@ -1,11 +1,12 @@
 body {
-  min-height: 95vh;
+  min-height: 98vh;
   background: no-repeat url(./images/background.jpg);
-  background-size: 100%;
+  background-size: cover;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
+  gap: 3rem;
   font-family: "Roboto", sans-serif;
 }
 
@@ -16,45 +17,57 @@ header .text {
 .content {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 50px;
+  gap: 5rem;
 }
 
 #weatherdata-day {
   padding: 0px;
   margin: 0px;
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
   font-size: 1.5rem;
 }
 
 .data-column {
+  min-width: 13rem;
   flex: auto;
   border-right: 3px solid black;
   padding: 10px;
   text-align: center;
-  line-height: 50px;
+  line-height: 3rem;
+}
+
+#datacolumn-1 img {
+  display: block;
+  height: 100px;
+  width: 100px;
+  visibility: hidden;
 }
 
 .search-box {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .search-box input {
   background: transparent;
-  font-size: 30px;
+  font-size: 2rem;
   border: 3px solid black;
   border-radius: 5px;
-  min-height: 40px;
-  min-width: 500px;
+  min-height: 2rem;
+  width: 20rem;
 }
 
 .search-box button {
-  min-height: 50px;
-  min-width: 100px;
+  min-height: 2.8rem;
+  min-width: 6rem;
   border: 3px solid black;
-  font-size: 20px;
+  border-radius: 5px;
+  font-size: 1.5rem;
   background: transparent;
 }

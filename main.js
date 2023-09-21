@@ -35,11 +35,10 @@ function createDataColumns() {
 
 function fillWeatherData() {
     let blankImage = new Image()
-    blankImage.setAttribute('style', 'height:100px;width:100px;visibility:hidden')
     const firstColumn = document.querySelector('#datacolumn-1')
     firstColumn.innerHTML += `Date<br>`
     firstColumn.appendChild(blankImage)
-    firstColumn.innerHTML += `<br>Temperature<br>Feels Like<br>`
+    firstColumn.innerHTML += `Temperature<br>Feels Like<br>`
     firstColumn.innerHTML += `Humidity<br>Description<br>`
     firstColumn.innerHTML += `Chance of Rain<br>`
     let jsonIndex = 0
