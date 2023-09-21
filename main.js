@@ -11,23 +11,33 @@ async function getWeatherData(cityName) {
     let weatherEndpoint = `http://api.openweathermap.org/data/2.5/forecast?lat=${cityLatitude}&lon=${cityLongitude}&appid=${apiKey}`
     let rawWeatherData = await fetch(weatherEndpoint)
     weatherData = await rawWeatherData.json()
+    console.log(weatherData["list"])
+}
+
+function createDataColumns() {
+    weatherDataDay.textContent = ""
+    for (let i = 1; i <= columnEntries; i++) {
+        const dataColumn = document.createElement('div')
+        dataColumn.classList.add('data-column')
+        let dataColumnID = `datacolumn-${i}`
+        dataColumn.setAttribute('id', dataColumnID)
+        weatherDataDay.appendChild(dataColumn)
+    }
 }
 
 function fillWeatherData() {
-    let columnValue = 1, columnCount = 0;
-    for (let i = 0; i < weatherData.list.length; i++) {
-        if (++columnCount >= 8) {
-            columnValue++
-            columnCount = 0
-        }
-        let columnSelectorID = `#datacolumn-${columnValue}`
+    const selectedColumn = document.querySelector('#datacolumn-1')
+    selectedColumn.textContent = ""
+    for (let i = 2; i <= columnEntries; i++) {
+        let columnSelectorID = `#datacolumn-${i}`
         const selectedColumn = document.querySelector(columnSelectorID)
-        selectedColumn.textContent = weatherData["list"][i]["main"]["temp"]
+        selectedColumn.textContent = weatherData["list"][0]["main"]["temp"]
     }
 }
 
 async function searchCity() {
     await getWeatherData(searchBox.value)
+    createDataColumns()
     fillWeatherData()
 }
 
@@ -35,4 +45,8 @@ let apiKey = "66cab58a00be0e1b64b6ac3f24d0eb2b"
 let cityLatitude, cityLongitude, weatherData;
 const searchBox = document.getElementById('search-box')
 const searchButton = document.getElementById('search-button')
+const weatherDataDay = document.querySelector('#weatherdata-day')
+const hoursPassed = (new Date()).getHours();
+let columnEntries = 8 - (hoursPassed % 3) + 1
+
 searchButton.addEventListener('click', searchCity)
