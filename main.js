@@ -1,17 +1,25 @@
 async function getCityData(cityName) {
-    let geocodeEndpoint = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`
-    let rawLocationData = await fetch(geocodeEndpoint);
-    let locationData = await rawLocationData.json();
-    cityLatitude = locationData[0]["lat"]
-    cityLongitude = locationData[0]["lon"]
+    try {
+        let geocodeEndpoint = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`
+        let rawLocationData = await fetch(geocodeEndpoint);
+        let locationData = await rawLocationData.json();
+        cityLatitude = locationData[0]["lat"]
+        cityLongitude = locationData[0]["lon"]
+    }
+    catch {
+        throw new Error('Location Data Unavailable!')
+    }
 }
 
-async function getWeatherData(cityName) {
-    await getCityData(cityName)
-    let weatherEndpoint = `http://api.openweathermap.org/data/2.5/forecast?lat=${cityLatitude}&lon=${cityLongitude}&appid=${apiKey}&units=metric`
-    let rawWeatherData = await fetch(weatherEndpoint)
-    weatherData = await rawWeatherData.json()
-
+async function getWeatherData() {
+    try {
+        let weatherEndpoint = `http://api.openweathermap.org/data/2.5/forecast?lat=${cityLatitude}&lon=${cityLongitude}&appid=${apiKey}&units=metric`
+        let rawWeatherData = await fetch(weatherEndpoint)
+        weatherData = await rawWeatherData.json()
+    }
+    catch (error) {
+        throw new Error('Weather Data Unavailable!')
+    }
 }
 
 function createDataColumns() {
@@ -58,9 +66,20 @@ function fillWeatherData() {
 }
 
 async function searchCity() {
-    await getWeatherData(searchBox.value)
-    createDataColumns()
-    fillWeatherData()
+    if (searchBox.value === '') {
+        weatherDataDay.textContent = "Please enter a city or region!"
+    }
+    else {
+        try {
+            await getCityData(searchBox.value)
+            await getWeatherData()
+            createDataColumns()
+            fillWeatherData()
+        }
+        catch (error) {
+            weatherDataDay.textContent = error
+        }
+    }
 }
 
 let apiKey = "66cab58a00be0e1b64b6ac3f24d0eb2b"

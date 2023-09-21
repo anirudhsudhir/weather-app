@@ -25,13 +25,13 @@ header .text {
   margin: 0px;
   display: flex;
   gap: 20px;
+  font-size: 1.5rem;
 }
 
 .data-column {
   flex: auto;
   border-right: 3px solid black;
   padding: 10px;
-  font-size: 1.5rem;
   text-align: center;
   line-height: 50px;
 }
