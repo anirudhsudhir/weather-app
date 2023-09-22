@@ -1,6 +1,9 @@
 body {
-  min-height: 98vh;
+  margin: 0px;
+  padding: 0px;
+  min-height: 100vh;
   background: no-repeat url(./images/background.jpg);
+  /* Setting background image to fill the screen on all devices */
   background-size: cover;
   display: flex;
   flex-wrap: wrap;
@@ -40,9 +43,11 @@ header .text {
 }
 
 #datacolumn-1 img {
+  /* Displaying image as block for adequate spacing */
   display: block;
   height: 100px;
   width: 100px;
+  /* Hiding image in the first column  */
   visibility: hidden;
 }
 
@@ -72,19 +77,23 @@ header .text {
   background: transparent;
 }
 
+/* Media query to check if the device is a mobile */
 @media (max-width: 1000px) {
+  /* Removing blank image on mobile screens */
   #datacolumn-1 img {
     height: 0px;
     width: 0px;
     display: inline;
   }
 
+  /* Displaying all weather cards in a column on mobile screens */
   #weatherdata-day {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 
+  /* Adding borders to separate weather cards on mobile screens */
   .data-column {
     border: 2px solid black;
     border-radius: 5px;
