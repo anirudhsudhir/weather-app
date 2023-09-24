@@ -1,7 +1,7 @@
 //Function to retrieve latitudes and longitudes of requested city
 async function getCityData(cityName) {
     try {
-        let geocodeEndpoint = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`;
+        let geocodeEndpoint = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`;
         //Fetching location data from API endpoint
         let rawLocationData = await fetch(geocodeEndpoint);
         let locationData = await rawLocationData.json();
@@ -17,7 +17,7 @@ async function getCityData(cityName) {
 //Function to retrieve weather data for given latitude and longitude
 async function getWeatherData() {
     try {
-        let weatherEndpoint = `http://api.openweathermap.org/data/2.5/forecast?lat=${cityLatitude}&lon=${cityLongitude}&appid=${apiKey}&units=metric`;
+        let weatherEndpoint = `https://api.openweathermap.org/data/2.5/forecast?lat=${cityLatitude}&lon=${cityLongitude}&appid=${apiKey}&units=metric`;
         //Fetching weather data from API endpoint
         let rawWeatherData = await fetch(weatherEndpoint);
         weatherData = await rawWeatherData.json();

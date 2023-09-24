@@ -47,6 +47,8 @@ header .text {
 .data-column img {
   border-radius: 10px;
   background-color: lightgray;
+  height: 100px;
+  width: 100px;
 }
 
 #datacolumn-1 img {
